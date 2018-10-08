@@ -26,22 +26,58 @@ const { Stack, peek, display } = require('./stack');
 
 // display(starTrek);
 
-function is_palindrome(str) {
-  str = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
-  const strStack = new Stack();
-  for (let i = 0; i < str.length; i++) {
-    strStack.push(str[i]);
+// function is_palindrome(str) {
+//   str = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+//   const strStack = new Stack();
+//   for (let i = 0; i < str.length; i++) {
+//     strStack.push(str[i]);
+//   }
+//   let newStr = '';
+//   let char = strStack.pop();
+//   while (char) {
+//     newStr += char;
+//     char = strStack.pop();
+//   }
+//   return (str === newStr);
+// }
+
+// console.log(is_palindrome('dad'));
+// console.log(is_palindrome('A man, a plan, a canal: Panama'));
+// console.log(is_palindrome('1001'));
+// console.log(is_palindrome('Tauhida'));
+
+function isBalanced(exp) {
+  const brackets = {
+    '(': ')',
+    '{': '}',
+    '[': ']'
+  };
+  const open = new Stack();
+  for (let i = 0; i < exp.length; i++) {
+    let char = exp[i];
+    if (char === '(' || char === '{' || char === '[') {
+      open.push({'type': char, i});
+    } else if (char === ')' || char === '}' || char === ']') {
+      let openChar = open.pop();
+      if (!openChar || brackets[openChar.type] !== char) {
+        return `Imbalanced expression! Error at index ${i}.`;
+      }
+    }
   }
-  let newStr = '';
-  let char = strStack.pop();
-  while (char) {
-    newStr += char;
-    char = strStack.pop();
+  let rem = open.pop();
+  if (rem) {
+    return `Imbalanced expression! Error at index ${rem.i}.`;
   }
-  return (str === newStr);
+  return 'Expression is balanced.';
 }
 
-console.log(is_palindrome('dad'));
-console.log(is_palindrome('A man, a plan, a canal: Panama'));
-console.log(is_palindrome('1001'));
-console.log(is_palindrome('Tauhida'));
+console.log(isBalanced('5+(3/(2-1))'));
+console.log(isBalanced('5+)3/(2-1))'));
+console.log(isBalanced('5+(3/(2-1)))'));
+console.log(isBalanced('(5+(3/(2-1))'));
+
+console.log(isBalanced('[5+(3/(2-{1}))]'));
+console.log(isBalanced('[5+(3/(2-{1)})]'));
+console.log(isBalanced('5+(3/(2-{1}))]'));
+console.log(isBalanced('[5+{(3/(2-{1}))]'));
+console.log(isBalanced('([)]'));
