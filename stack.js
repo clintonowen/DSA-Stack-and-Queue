@@ -43,6 +43,7 @@ function peek(stack) {
 }
 
 function display(stack) {
+  console.log('Displaying stack:');
   let node = stack.top;
   while (node !== null) {
     console.log(node.data);
