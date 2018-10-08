@@ -34,4 +34,20 @@ class Stack {
   }
 }
 
-module.exports = { Stack };
+function peek(stack) {
+  if (!stack.top) {
+    return;
+  } else {
+    return stack.top.data;
+  }
+}
+
+function display(stack) {
+  let node = stack.top;
+  while (node !== null) {
+    console.log(node.data);
+    node = node.next;
+  }
+}
+
+module.exports = { Stack, peek, display };

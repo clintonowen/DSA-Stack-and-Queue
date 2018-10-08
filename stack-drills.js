@@ -1,6 +1,6 @@
 'use strict';
 
-const { Stack } = require('./stack');
+const { Stack, peek, display } = require('./stack');
 
 const starTrek = new Stack();
 let data = ['Kirk', 'Spock', 'McCoy', 'Scotty'];
@@ -8,4 +8,8 @@ for (let i in data) {
   starTrek.push(data[i]);
 }
 
-console.log('starTrek', JSON.stringify(starTrek));
+console.log('peek(starTrek) =', peek(starTrek));
+
+// console.log('starTrek =', JSON.stringify(starTrek));
+
+display(starTrek);
