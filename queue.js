@@ -50,4 +50,17 @@ class Queue {
   }
 }
 
-module.exports = Queue;
+function peek(q) {
+  return q.first.value;
+}
+
+function display(q) {
+  console.log('Displaying queue:');
+  let node = q.first;
+  while (node !== null) {
+    console.log(node.value);
+    node = node.prev;
+  }
+}
+
+module.exports = { Queue, peek, display };
