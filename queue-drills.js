@@ -31,13 +31,32 @@ const { Queue2, displayQ2 } = require('./queue-2stacks');
   // }
   // display(starTrekQ);
 
-  const starTrekQ2 = new Queue2();
-  for (let i in starTrekData) {
-    starTrekQ2.enqueue(starTrekData[i]);
+  // const starTrekQ2 = new Queue2();
+  // for (let i in starTrekData) {
+  //   starTrekQ2.enqueue(starTrekData[i]);
+  // }
+  // displayQ2(starTrekQ2);
+  // starTrekQ2.dequeue();
+  // displayQ2(starTrekQ2);
+  // starTrekQ2.enqueue('Kirk');
+  // displayQ2(starTrekQ2);
+
+  const dancerData = [
+    {'sex': 'F', 'name': 'Jane'},
+    {'sex': 'M', 'name': 'Frank'},
+    {'sex': 'M', 'name': 'John'},
+    {'sex': 'M', 'name': 'Sherlock'},
+    {'sex': 'F', 'name': 'Madonna'},
+    {'sex': 'M', 'name': 'David'},
+    {'sex': 'M', 'name': 'Christopher'},
+    {'sex': 'F', 'name': 'Beyonce'},
+  ];
+  const dancerQ = new Queue();
+  for (let i in dancerData) {
+    dancerQ.enqueue(dancerData[i]);
   }
-  displayQ2(starTrekQ2);
-  starTrekQ2.dequeue();
-  displayQ2(starTrekQ2);
-  starTrekQ2.enqueue('Kirk');
-  displayQ2(starTrekQ2);
+  display(dancerQ);
+  (function pairOff(q){
+    let current = q.dequeue();
+  })(dancerQ);
 })();
